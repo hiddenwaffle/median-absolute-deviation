@@ -1,7 +1,7 @@
 import './style.css'
 
 document.querySelector('#app').innerHTML = `
-  <div>Hello World</div>
+  <div>MATH-M 368 - Median Absolute Deviation - Simulator</div>
   <div id="chart_div"></div>
 `
 
@@ -53,3 +53,13 @@ google.charts.setOnLoadCallback(drawChart);
 const population_median = (arr[POPULATION_SIZE / 2 - 1] + arr[POPULATION_SIZE / 2]) / 2
 const population_mean = arr.reduce((acc, n) => acc + n, 0) / POPULATION_SIZE
 console.log('median:', population_median, 'mean:', population_mean)
+
+/**
+ * Fisher-Yates, from: https://javascript.info/array-methods#shuffle-an-array
+ */
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1))
+    [arr[i], arr[j]] = [arr[j], arr[i]]
+  }
+}
