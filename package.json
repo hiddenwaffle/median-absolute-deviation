@@ -10,8 +10,5 @@
   },
   "devDependencies": {
     "vite": "^5.2.0"
-  },
-  "dependencies": {
-    "statistics.js": "^1.0.0"
   }
 }
