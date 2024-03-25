@@ -16,8 +16,8 @@ function drawChart() {
   }
   const options = {
     'title': 'asdf',
-    'width': 800,
-    'height': 600
+    'width': 640,
+    'height': 480
   }
   const chart = new google.visualization.Histogram(document.getElementById('chart_div'))
   chart.draw(dataTable, options)
