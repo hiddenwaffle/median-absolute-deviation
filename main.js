@@ -30,5 +30,8 @@ document.getElementById('parameters-form').addEventListener('submit', (event) =>
     writeStats('population-symmetric-stats', calculateStats(symmetricArray, true))
     writeStats('population-skewed-stats', calculateStats(skewedArray, true))
     showPopulationChartSection()
+    // TODO: Loop such that 10 times a second, drawChart a sample for each distribution.
+    // TODO: To do this, loop calculating samples until 100ms pass, then requestAnimationFrame.
+    // TODO: Do this until there are sampleSize samples.
   }, 33) // 33 is arbitrary
 })
