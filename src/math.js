@@ -13,6 +13,10 @@ export function shuffle(prev) {
   return next
 }
 
+function generateOutlier(size) {
+  return size * 1.25 + (Math.random() * size / 3) // arbitrary
+}
+
 /**
  * Returns a sorted array of random numbers for the given randomizer
  * Based on https://gist.github.com/greim/4589675 with
@@ -23,7 +27,7 @@ function randArray(size, rFunc, outliersCount) {
   for (let n = 0; n < size; n++) {
     arr.push(Math.floor(rFunc() * size))
   }
-  for (let n = 0; n < outliersCount; n++) { arr.push(size * 2) }
+  for (let n = 0; n < outliersCount; n++) { arr.push(generateOutlier(size)) }
   return arr.sort((a, b) => a - b)
 }
 
