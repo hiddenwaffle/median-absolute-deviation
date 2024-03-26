@@ -1,18 +1,3 @@
-/**
- * Fisher-Yates, from: https://javascript.info/array-methods#shuffle-an-array
- */
-export function shuffle(prev) {
-  const next = [...prev]
-  for (let i = next.length - 1; i > 0; i -= 1) {
-    const j = Math.floor(Math.random() * (i + 1))
-    const x = next[j]
-    const y = next[i]
-    next[i] = x
-    next[j] = y
-  }
-  return next
-}
-
 function generateOutlier(size) {
   return Math.floor(size * 1.25 + (Math.random() * size / 3)) // arbitrary
 }
@@ -83,4 +68,22 @@ export function calculateStats(arr, population = false) {
   const mad1 = calculateMAD1(arr, median)
   const mad2 = calculateMAD2(arr, median)
   return { median, mean, stddev, mad1, mad2 }
+}
+/**
+ * Fisher-Yates, from: https://javascript.info/array-methods#shuffle-an-array
+ */
+function shuffle(prev) {
+  const next = [...prev]
+  for (let i = next.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1))
+    const x = next[j]
+    const y = next[i]
+    next[i] = x
+    next[j] = y
+  }
+  return next
+}
+
+export function getSample(arr, sampleSize) {
+  return shuffle(arr).slice(0, sampleSize)
 }
