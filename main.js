@@ -1,11 +1,11 @@
+import { POPULATION_SIZE } from './src/constants'
+import { randLeftSkewArray } from './src/math'
 import './style.css'
-import { randLeftSkewArray, shuffle } from './src/math.js'
-import { POPULATION_SIZE } from './src/constants.js'
 
-document.querySelector('#app').innerHTML = `
-  <div>MATH-M 368 - Median Absolute Deviation - Simulator</div>
-  <div id="chart_div"></div>
-`
+// document.querySelector('#app').innerHTML = `
+//   <div>MATH-M 368 - Median Absolute Deviation - Simulator</div>
+//   <div id="chart_div"></div>
+// `
 
 // const arr = randLeftSkewArray(POPULATION_SIZE);
 
@@ -16,9 +16,12 @@ document.querySelector('#app').innerHTML = `
 //     dataTable.addRow([value])
 //   }
 //   const options = {
-//     'title': 'asdf',
-//     'width': 640,
-//     'height': 480
+//     title: 'asdf',
+//     width: 420,
+//     height: 320,
+//     legend: {
+//       'position': 'none'
+//     }
 //   }
 //   const chart = new google.visualization.Histogram(document.getElementById('chart_div'))
 //   chart.draw(dataTable, options)
