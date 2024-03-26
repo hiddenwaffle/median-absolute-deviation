@@ -26,11 +26,35 @@ export function resetPage() {
   el('start-button').style.display = 'block'
   // Hide all of the sections
   ;[
-    'population-chart-section'
+    // See showPopulationChartSection(), showComparisonSections(), etc
+    'population-chart-section',
+    'mean-section',
+    'sd-section',
+    'median-section',
+    'mad1-section',
+    'mad2-section'
   ].forEach((elementId) => {
     el(elementId).style.display = 'none'
   })
   // TODO: Clear any timers
+}
+
+/**
+ * Reset in resetPage()
+ */
+export function showPopulationChartSection() {
+  el('population-chart-section').style.display = 'flex'
+}
+
+/**
+ * Reset in resetPage()
+ */
+export function showComparisonSections() {
+  el('mean-section').style.display = 'flex'
+  el('sd-section').style.display = 'flex'
+  el('median-section').style.display = 'flex'
+  el('mad1-section').style.display = 'flex'
+  el('mad2-section').style.display = 'flex'
 }
 
 export function enableStartButton(enabled) {
@@ -49,8 +73,4 @@ export function writeStats(elementId, stats) {
     `Median   ${stats.median.toFixed(2)}\n` +
     `MAD1     ${stats.mad1.toFixed(2)}\n` +
     `MAD2     ${stats.mad2.toFixed(2)}`
-}
-
-export function showPopulationChartSection() {
-  el('population-chart-section').style.display = 'flex'
 }

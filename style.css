@@ -94,29 +94,17 @@ button:disabled, button[disabled] {
 }
 
 .subsection {
+  flex: 1;
   padding-top: 4px;
   padding-bottom: 4px;
   margin-top: 4px;
   margin-bottom: 4px;
+  text-align: center;
 }
 
-#population-chart-section {
+/* All chart sections invisible by default (see resetPage() in dom.js) */
+.chart-section {
   display: none; /* -> flex */
-}
-
-#popchart-uniform-subsection {
-  flex: 1;
-  text-align: center;
-}
-
-#popchart-symmetric-subsection {
-  flex: 1;
-  text-align: center;
-}
-
-#popchart-skewed-subsection {
-  flex: 1;
-  text-align: center;
 }
 
 .textstats {

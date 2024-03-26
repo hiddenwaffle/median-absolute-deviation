@@ -1,5 +1,5 @@
 import { drawChart } from './src/chart'
-import { showPopulationChartSection, getParameter, resetPage, writeStats, enableStartButton } from './src/dom'
+import { showPopulationChartSection, getParameter, resetPage, writeStats, enableStartButton, showComparisonSections } from './src/dom'
 import { calculateStats, getSample, randLeftSkewArray as randLeftSkewedArray, randSymmetricArray, randUniformArray } from './src/math'
 import './style.css'
 
@@ -61,8 +61,8 @@ function start() {
       const skewedSample = calculateStats(getSample(uniformArray, skewedArray))
       skewedSamplesStats.push(skewedSample)
     }
-    // Compare the sample stats to the population stats
-    console.log(uniformSampleStats, symmetricSampleStats, skewedSamplesStats)
+    // TODO: Compare the sample stats to the population stats
+    showComparisonSections()
     enableStartButton(true)
   }, 33) // 33 is arbitrary
 }
