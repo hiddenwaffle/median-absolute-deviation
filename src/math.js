@@ -14,7 +14,7 @@ export function shuffle(prev) {
 }
 
 function generateOutlier(size) {
-  return size * 1.25 + (Math.random() * size / 3) // arbitrary
+  return Math.floor(size * 1.25 + (Math.random() * size / 3)) // arbitrary
 }
 
 /**
@@ -63,9 +63,11 @@ function isOdd(n) {
 }
 
 export function calculateStats(arr, population = false) {
-  const median = isOdd(arr.length) ?
-    Math.floor(arr[arr.length / 2])
+  const median = isOdd(arr.length)
+    ? arr[Math.floor(arr.length / 2)]
     : (arr[arr.length / 2 - 1] + arr[arr.length / 2]) / 2
   const mean = arr.reduce((acc, n) => acc + n, 0) / (population ? arr.length : arr.length - 1)
-  return { median, mean }
+  const stddev = 1
+  const mad = 2
+  return { median, mean, stddev, mad }
 }
