@@ -27,5 +27,6 @@ document.getElementById('parameters-form').addEventListener('submit', (event) =>
     drawChart('Symmetric population', 'popchart-symmetric', symmetricArray)
     drawChart('Skewed population', 'popchart-skewed', skewedArray)
     showPopulationChartSection()
+    debugger
   }, 33) // 33 is arbitrary
 })

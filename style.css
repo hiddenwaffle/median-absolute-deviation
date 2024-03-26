@@ -103,12 +103,20 @@ button:focus-visible {
 
 #popchart-uniform-subsection {
   flex: 1;
+  text-align: center;
 }
 
 #popchart-symmetric-subsection {
   flex: 1;
+  text-align: center;
 }
 
 #popchart-skewed-subsection {
   flex: 1;
+  text-align: center;
+}
+
+.textstats {
+  resize: none;
+  min-height: 5lh;
 }
