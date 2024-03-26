@@ -11,21 +11,23 @@
     <div id="app">
       <h2>Median Absolute Deviation</h2>
       <div class="section">
-        <div class="subsection">
-          <label for="population-size">Population Size:</label>
-          <input id="population-size" name="population-size" value="10000">
-          <label for="sample-size">Sample Size:</label>
-          <input id="sample-size" name="sample-size" value="100">
-        </div>
-        <div class="subsection">
-          <label for="sample-count">Sample Count:</label>
-          <input id="sample-count" name="sample-count" value="50">
-          <label for="outliers-count">Number of Outliers:</label>
-          <input id="outliers-count" name="outliers-count" value="0">
-        </div>
-        <div class="subsection">
-          <button>Start</button>
-        </div>
+        <form id="parameters-form">
+          <div class="subsection">
+            <label for="population-size">Population Size:</label>
+            <input id="population-size" name="population-size" type="number" value="10000" max="100000">
+            <label for="sample-size">Sample Size:</label>
+            <input id="sample-size" name="sample-size" type="number" value="100">
+          </div>
+          <div class="subsection">
+            <label for="sample-count">Sample Count:</label>
+            <input id="sample-count" name="sample-count" type="number" value="50">
+            <label for="outliers-count">Number of Outliers:</label>
+            <input id="outliers-count" name="outliers-count" type="number" value="0">
+          </div>
+          <div class="subsection">
+            <button id="start-button" type="submit">Start</button>
+          </div>
+        </form>
       </div>
       <div id="population-chart-section" class="section">
         <div id="popchart-uniform">Pop1</div>

@@ -79,11 +79,15 @@ button:focus-visible {
 /* App-specific CSS
 /*-------------------------------------------------------------------------*/
 
+#start-button {
+  display: none;
+}
+
 .section {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  margin-top: 12px;
-  margin-bottom: 12px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  margin-top: 8px;
+  margin-bottom: 8px;
 }
 
 .subsection {
@@ -94,7 +98,7 @@ button:focus-visible {
 }
 
 #population-chart-section {
-  display: flex;
+  display: none; /* -> flex */
 }
 
 #popchart-uniform {
