@@ -62,6 +62,13 @@ function start() {
       skewedSamplesStats.push(skewedSample)
     }
     // TODO: Compare the sample stats to the population stats
+    // TODO: Calculate % difference for each sample's mean, mad1, and mad2
+    // TODO: |pop_mean - sample_mean| / pop_mean
+    // TODO:    Example: |100 -  50| = 50, 50 / 100 = 50% difference
+    // TODO:    Example: |100 -  99| =  1,  1 / 100 =  1% difference
+    // TODO:    Example: |100 - 105| =  5,  5 / 100 =  5% difference
+    // TODO: Now there are 3 arrays of % difference for each distribution = 9 arrays
+    // TODO: Run statistics on those 9 arrays
     showComparisonSections()
     enableStartButton(true)
   }, 33) // 33 is arbitrary
