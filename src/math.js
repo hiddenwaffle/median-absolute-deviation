@@ -55,8 +55,17 @@ export function randLeftSkewArray(size, outliersCount) {
   )
 }
 
+/**
+ * https://stackoverflow.com/a/5016327
+ */
+function isOdd(n) {
+  return n % 2
+}
+
 export function calculateStats(arr, population = false) {
-  const median = (arr[arr.length / 2 - 1] + arr[arr.length / 2]) / 2
+  const median = isOdd(arr.length) ?
+    Math.floor(arr[arr.length / 2])
+    : (arr[arr.length / 2 - 1] + arr[arr.length / 2]) / 2
   const mean = arr.reduce((acc, n) => acc + n, 0) / (population ? arr.length : arr.length - 1)
   return { median, mean }
 }
