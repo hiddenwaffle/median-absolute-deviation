@@ -10,6 +10,9 @@ export function drawChart(title, elementId, arr) {
     height: 320,
     legend: {
       'position': 'none'
+    },
+    hAxis: {
+      showTextEvery: Math.floor(10)
     }
   }
   const element = document.getElementById(elementId)

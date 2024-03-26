@@ -22,7 +22,9 @@ export function getParameter(elementId, nonZero = true) {
 }
 
 export function resetPage() {
+  // Show the start button
   el('start-button').style.display = 'block'
+  // Hide all of the sections
   ;[
     'population-chart-section'
   ].forEach((elementId) => {
@@ -31,6 +33,6 @@ export function resetPage() {
   // TODO: Clear any timers
 }
 
-export function displayPopulationHistograms() {
+export function showPopulationChartSection() {
   el('population-chart-section').style.display = 'flex'
 }

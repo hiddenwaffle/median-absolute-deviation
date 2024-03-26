@@ -1,5 +1,5 @@
 import { drawChart } from './src/chart'
-import { displayPopulationHistograms, getParameter, resetPage } from './src/dom'
+import { showPopulationChartSection, getParameter, resetPage } from './src/dom'
 import { randLeftSkewArray as randLeftSkewedArray, randSymmetricArray, randUniformArray } from './src/math'
 import './style.css'
 
@@ -12,18 +12,20 @@ document.getElementById('parameters-form').addEventListener('submit', (event) =>
   event.preventDefault()
   // Reset the page in case the user had already started a simulation
   resetPage()
-  // Get parameters
-  const populationSize = getParameter('population-size')
-  const sampleSize = getParameter('sample-size')
-  const sampleCount = getParameter('sample-count')
-  const outliersCount = getParameter('outliers-count', false)
-  // Generate populations
-  const uniformArray = randUniformArray(populationSize)
-  const symmetricArray = randSymmetricArray(populationSize)
-  const skewedArray = randLeftSkewedArray(populationSize)
-  // Draw population histograms
-  drawChart('Uniform population', 'popchart-uniform', uniformArray)
-  drawChart('Symmetric population', 'popchart-symmetric', symmetricArray)
-  drawChart('Skewed population', 'popchart-skewed', skewedArray)
-  displayPopulationHistograms()
+  setTimeout(() => {
+    // Get parameters
+    const populationSize = getParameter('population-size')
+    const sampleSize = getParameter('sample-size')
+    const sampleCount = getParameter('sample-count')
+    const outliersCount = getParameter('outliers-count', false)
+    // Generate populations
+    const uniformArray = randUniformArray(populationSize)
+    const symmetricArray = randSymmetricArray(populationSize)
+    const skewedArray = randLeftSkewedArray(populationSize)
+    // Draw population histograms
+    drawChart('Uniform population', 'popchart-uniform', uniformArray)
+    drawChart('Symmetric population', 'popchart-symmetric', symmetricArray)
+    drawChart('Skewed population', 'popchart-skewed', skewedArray)
+    showPopulationChartSection()
+  }, 33) // 33 is arbitrary
 })
