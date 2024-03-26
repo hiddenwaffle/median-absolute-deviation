@@ -62,12 +62,25 @@ function isOdd(n) {
   return n % 2
 }
 
+function calculateStandardDeviation(arr, mean) {
+  return Math.sqrt(arr.map(n => (n - mean) ** 2).reduce((acc, n) => acc + n, 0) / arr.length)
+}
+
+function calculateMAD1(arr, median) {
+  return 111
+}
+
+function calculateMAD2(arr, median) {
+  return 222
+}
+
 export function calculateStats(arr, population = false) {
+  const mean = arr.reduce((acc, n) => acc + n, 0) / (population ? arr.length : arr.length - 1)
+  const stddev = calculateStandardDeviation(arr, mean)
   const median = isOdd(arr.length)
     ? arr[Math.floor(arr.length / 2)]
     : (arr[arr.length / 2 - 1] + arr[arr.length / 2]) / 2
-  const mean = arr.reduce((acc, n) => acc + n, 0) / (population ? arr.length : arr.length - 1)
-  const stddev = 1
-  const mad = 2
-  return { median, mean, stddev, mad }
+  const mad1 = calculateMAD1(arr, median)
+  const mad2 = calculateMAD2(arr, median)
+  return { median, mean, stddev, mad1, mad2 }
 }

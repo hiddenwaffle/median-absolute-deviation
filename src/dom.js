@@ -35,10 +35,12 @@ export function resetPage() {
 
 export function writeStats(elementId, stats) {
   el(elementId).value =
-    `Median   ${stats.median.toFixed(2)}\n` +
     `Mean     ${stats.mean.toFixed(2)}\n` +
-    `Std Dev  ${stats.stddev.toFixed(2)}\n` +
-    `MAD      ${stats.mad.toFixed(2)}`
+    `SD       ${stats.stddev.toFixed(2)}\n` +
+    `\n` +
+    `Median   ${stats.median.toFixed(2)}\n` +
+    `MAD1     ${stats.mad1.toFixed(2)}\n` +
+    `MAD2     ${stats.mad2.toFixed(2)}`
 }
 
 export function showPopulationChartSection() {
