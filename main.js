@@ -1,5 +1,3 @@
-import { POPULATION_SIZE } from './src/constants'
-import { randLeftSkewArray } from './src/math'
 import './style.css'
 
 // document.querySelector('#app').innerHTML = `

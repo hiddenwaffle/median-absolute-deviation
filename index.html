@@ -10,25 +10,28 @@
   <body>
     <div id="app">
       <h2>Median Absolute Deviation</h2>
-      <div>
-        <label for="population-size">Population Size:</label>
-        <input id="population-size" name="population-size">
-        <label for="sample-size">Sample Size:</label>
-        <input id="sample-size" name="sample-size">
-        <label for="sample-count">Sample Count:</label>
-        <input id="sample-count" name="sample-count">
-        <label for="outliers-count">Number of Outliers:</label>
-        <input id="outliers-count" name="outliers-count">
+      <div class="section">
+        <div class="subsection">
+          <label for="population-size">Population Size:</label>
+          <input id="population-size" name="population-size" value="10000">
+          <label for="sample-size">Sample Size:</label>
+          <input id="sample-size" name="sample-size" value="100">
+        </div>
+        <div class="subsection">
+          <label for="sample-count">Sample Count:</label>
+          <input id="sample-count" name="sample-count" value="50">
+          <label for="outliers-count">Number of Outliers:</label>
+          <input id="outliers-count" name="outliers-count" value="0">
+        </div>
+        <div class="subsection">
+          <button>Start</button>
+        </div>
       </div>
-      <div>
-        <button>Start</button>
-      </div>
-      <div>
-        <div>Pop1</div>
-        <div>Pop2</div>
-        <div>Pop3</div>
+      <div id="population-chart-section" class="section">
+        <div id="popchart-uniform">Pop1</div>
+        <div id="popchart-symmetric">Pop2</div>
+        <div id="popchart-skewed">Pop3</div>
       </div>
     </div>
     <script type="module" src="/main.js"></script>
-  </body>
 </html>

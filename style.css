@@ -74,3 +74,37 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+/*-------------------------------------------------------------------------*/
+/* App-specific CSS
+/*-------------------------------------------------------------------------*/
+
+.section {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+.subsection {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+#population-chart-section {
+  display: flex;
+}
+
+#popchart-uniform {
+  flex: 1;
+}
+
+#popchart-symmetric {
+  flex: 1;
+}
+
+#popchart-skewed {
+  flex: 1;
+}
