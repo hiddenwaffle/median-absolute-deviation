@@ -33,6 +33,12 @@ export function resetPage() {
   // TODO: Clear any timers
 }
 
+export function writeStats(elementId, stats) {
+  el(elementId).value =
+    `Median: ${stats.median.toFixed(2)}\n` +
+    `Mean: ${stats.mean.toFixed(2)}`
+}
+
 export function showPopulationChartSection() {
   el('population-chart-section').style.display = 'flex'
 }

@@ -117,6 +117,7 @@ button:focus-visible {
 }
 
 .textstats {
+  font-family: monospace;
   resize: none;
   min-height: 5lh;
 }
