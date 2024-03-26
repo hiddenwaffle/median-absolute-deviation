@@ -28,11 +28,7 @@ export function resetPage() {
   ;[
     // See showPopulationChartSection(), showComparisonSections(), etc
     'population-chart-section',
-    'mean-section',
-    'sd-section',
-    'median-section',
-    'mad1-section',
-    'mad2-section'
+    'comparison-section'
   ].forEach((elementId) => {
     el(elementId).style.display = 'none'
   })
@@ -50,11 +46,7 @@ export function showPopulationChartSection() {
  * Reset in resetPage()
  */
 export function showComparisonSections() {
-  el('mean-section').style.display = 'flex'
-  el('sd-section').style.display = 'flex'
-  el('median-section').style.display = 'flex'
-  el('mad1-section').style.display = 'flex'
-  el('mad2-section').style.display = 'flex'
+  el('comparison-section').style.display = 'block'
 }
 
 export function enableStartButton(enabled) {

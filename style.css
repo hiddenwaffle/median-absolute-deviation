@@ -93,17 +93,22 @@ button:disabled, button[disabled] {
   margin-bottom: 8px;
 }
 
+.chart-section {
+  display: flex;
+  text-align: center;
+}
+
 .subsection {
   flex: 1;
   padding-top: 4px;
   padding-bottom: 4px;
   margin-top: 4px;
   margin-bottom: 4px;
-  text-align: center;
 }
 
-/* All chart sections invisible by default (see resetPage() in dom.js) */
-.chart-section {
+/* These are invisible by default (see resetPage() in dom.js) */
+#population-chart-section,
+#comparison-section {
   display: none; /* -> flex */
 }
 
