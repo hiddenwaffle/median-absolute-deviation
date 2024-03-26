@@ -33,6 +33,14 @@ export function resetPage() {
   // TODO: Clear any timers
 }
 
+export function enableStartButton(enabled) {
+  if (enabled) {
+    el('start-button').disabled = ''
+  } else {
+    el('start-button').disabled = 'disabled'
+  }
+}
+
 export function writeStats(elementId, stats) {
   el(elementId).value =
     `Mean     ${stats.mean.toFixed(2)}\n` +
