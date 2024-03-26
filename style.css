@@ -101,14 +101,14 @@ button:focus-visible {
   display: none; /* -> flex */
 }
 
-#popchart-uniform {
+#popchart-uniform-subsection {
   flex: 1;
 }
 
-#popchart-symmetric {
+#popchart-symmetric-subsection {
   flex: 1;
 }
 
-#popchart-skewed {
+#popchart-skewed-subsection {
   flex: 1;
 }
