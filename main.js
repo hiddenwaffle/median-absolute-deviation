@@ -32,6 +32,11 @@ document.getElementById('parameters-form').addEventListener('submit', (event) =>
   setTimeout(() => startDataGeneration(), 33) // 33 is arbitrary
 })
 
+// Handle if the user checks/unchecks the "Save to CSV" checkbox
+document.getElementById('save-checkbox').addEventListener('change', (event) => {
+  window.showOpenFilePicker()
+})
+
 /**
  * Main orchestration here
  */

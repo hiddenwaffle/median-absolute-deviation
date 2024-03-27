@@ -18,7 +18,7 @@ export function getParameter(elementId, nonZero = true) {
 
 export function resetPage() {
   // Show the start button
-  el('start-button').style.display = 'block'
+  el('start-button').style.display = 'inline-block'
   // TODO: Clear the textareas?
   // TODO: Reset the progress bar?
   // Hide all of the sections
