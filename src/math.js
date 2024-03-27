@@ -146,6 +146,5 @@ export function findMinMaxTimes100(uniformStats, symmetricStats, skewedStats) {
       }
     }
   }
-  console.log('found:', minFound * 100, maxFound * 100)
   return [minFound * 100, maxFound * 100]
 }
