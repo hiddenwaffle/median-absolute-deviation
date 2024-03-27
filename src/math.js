@@ -3,7 +3,7 @@ function generateOutlier(size) {
 }
 
 /**
- * Returns a sorted array of random numbers for the given randomizer
+ * Returns an array of random numbers for the given randomizer
  * Based on https://gist.github.com/greim/4589675 with
  * visualizations at https://old.reddit.com/r/javascript/comments/170hm0/fun_with_mathrandom_and_probability_distributions/
  */
@@ -13,7 +13,7 @@ function randArray(size, rFunc, outliersCount) {
     arr.push(Math.floor(rFunc() * size))
   }
   for (let n = 0; n < outliersCount; n++) { arr.push(generateOutlier(size)) }
-  return arr.sort((a, b) => a - b)
+  return arr
 }
 
 export function randUniformArray(size, outliersCount) {
@@ -51,22 +51,37 @@ function calculateStandardDeviation(arr, mean) {
   return Math.sqrt(arr.map(n => (n - mean) ** 2).reduce((acc, n) => acc + n, 0) / arr.length)
 }
 
-function calculateMAD1(arr, median) {
-  return 111
+/**
+ * The median of the absolute values of (elements minus the given median)
+ */
+function calculateMad1(arr, median) {
+  return calculateMedian(arr.map(x => Math.abs(x - median)))
 }
 
-function calculateMAD2(arr, median) {
-  return 222
+/**
+ * The sum of (the absolute value of an array element minus the median),
+ * all divided by the number of elements
+ */
+function calculateMad2(arr, median) {
+  return arr.map(x => Math.abs(x - median)).reduce((acc, n) => acc + n, 0) / arr.length
+}
+
+/**
+ * TODO: Should probably write a comprehensive test for this function
+ */
+function calculateMedian(arrUnsorted) {
+  const arr = arrUnsorted.sort((a, b) => a - b)
+  return isOdd(arr.length)
+    ? arr[Math.floor(arr.length / 2)]
+    : (arr[arr.length / 2 - 1] + arr[arr.length / 2]) / 2
 }
 
 export function calculateStats(arr, population = false) {
   const mean = arr.reduce((acc, n) => acc + n, 0) / (population ? arr.length : arr.length - 1)
   const stddev = calculateStandardDeviation(arr, mean)
-  const median = isOdd(arr.length)
-    ? arr[Math.floor(arr.length / 2)]
-    : (arr[arr.length / 2 - 1] + arr[arr.length / 2]) / 2
-  const mad1 = calculateMAD1(arr, median)
-  const mad2 = calculateMAD2(arr, median)
+  const median = calculateMedian(arr)
+  const mad1 = calculateMad1(arr, median)
+  const mad2 = calculateMad2(arr, median)
   return { median, mean, stddev, mad1, mad2 }
 }
 /**
@@ -86,4 +101,30 @@ function shuffle(prev) {
 
 export function getSample(arr, sampleSize) {
   return shuffle(arr).slice(0, sampleSize)
+}
+
+/**
+ * Calculate % difference between the sample values and the population values
+ */
+function calculatePercentageDiff(sampleValues, populationValue) {
+  return sampleValues.map(x => Math.abs(x - populationValue)) // For debugging
+  // return sampleValues.map(x => Math.abs(x - populationValue) / populationValue)
+}
+
+export function compareStats(populationStats, samplesStats) {
+  const samplesStddevArray = samplesStats.map(sampleStat => sampleStat.stddev)
+  const samplesMad1Array = samplesStats.map(sampleStat => sampleStat.mad1)
+  const samplesMad2Array = samplesStats.map(sampleStat => sampleStat.mad2)
+  const stddevPercentDiffs = calculatePercentageDiff(samplesStddevArray, populationStats.stddev)
+  const mad1PercentDiffs = calculatePercentageDiff(samplesMad1Array, populationStats.stddev)
+  const mad2PercentDiffs = calculatePercentageDiff(samplesMad2Array, populationStats.stddev)
+  const stddevPercentDiffStats = calculateStats(stddevPercentDiffs)
+  debugger
+  const mad1PercentDiffStats = calculateStats(mad1PercentDiffs)
+  const mad2PercentDiffStats = calculateStats(mad2PercentDiffs)
+  return {
+    stddevPercentDiffStats,
+    mad1PercentDiffStats,
+    mad2PercentDiffStats
+  }
 }

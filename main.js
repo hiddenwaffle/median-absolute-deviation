@@ -1,6 +1,6 @@
 import { drawChart } from './src/chart'
 import { showPopulationChartSection, getParameter, resetPage, writeStats, enableStartButton, showComparisonSections } from './src/dom'
-import { calculateStats, getSample, randLeftSkewArray as randLeftSkewedArray, randSymmetricArray, randUniformArray } from './src/math'
+import { calculateStats, compareStats, getSample, randLeftSkewArray as randLeftSkewedArray, randSymmetricArray, randUniformArray } from './src/math'
 import './style.css'
 
 // Wait for Google Charts to load before allowing user to begin the simulation
@@ -50,25 +50,34 @@ function start() {
     // TODO: Loop such that 10 times a second, drawChart a sample for each distribution.
     // TODO: To do this, loop calculating samples until 100ms pass, then requestAnimationFrame.
     // TODO: Do this until there are sampleSize samples.
-    const uniformSampleStats = []
-    const symmetricSampleStats = []
+    const uniformSamplesStats = []
+    const symmetricSamplesStats = []
     const skewedSamplesStats = []
     for (let i = 0; i < sampleCount; i++) {
-      const uniformSample = calculateStats(getSample(uniformArray, sampleSize))
-      uniformSampleStats.push(uniformSample)
-      const symmetricSample = calculateStats(getSample(uniformArray, symmetricArray))
-      symmetricSampleStats.push(symmetricSample)
-      const skewedSample = calculateStats(getSample(uniformArray, skewedArray))
-      skewedSamplesStats.push(skewedSample)
+      const uniformSampleStats = calculateStats(getSample(uniformArray, sampleSize))
+      uniformSamplesStats.push(uniformSampleStats)
+      const symmetricSampleStats = calculateStats(getSample(uniformArray, sampleSize))
+      symmetricSamplesStats.push(symmetricSampleStats)
+      const skewedSampleStats = calculateStats(getSample(uniformArray, sampleSize))
+      skewedSamplesStats.push(skewedSampleStats)
     }
-    // TODO: Compare the sample stats to the population stats
-    // TODO: Calculate % difference for each sample's mean, mad1, and mad2
-    // TODO: |pop_mean - sample_mean| / pop_mean
-    // TODO:    Example: |100 -  50| = 50, 50 / 100 = 50% difference
-    // TODO:    Example: |100 -  99| =  1,  1 / 100 =  1% difference
-    // TODO:    Example: |100 - 105| =  5,  5 / 100 =  5% difference
-    // TODO: Now there are 3 arrays of % difference for each distribution = 9 arrays
-    // TODO: Run statistics on those 9 arrays
+    // Compare the sample stats to the population stats
+    const uniformComparison = compareStats(populationUniformStats, uniformSamplesStats)
+    const symmetricComparison = compareStats(populationSymmetricStats, symmetricSamplesStats)
+    const skewedComparison = compareStats(populationSkewedStats, skewedSamplesStats)
+    // Standard Deviation % Difference
+    writeStats('stddev-uniform-stats', uniformComparison.stddevPercentDiffStats)
+    writeStats('stddev-symmetric-stats', symmetricComparison.stddevPercentDiffStats)
+    writeStats('stddev-skewed-stats', skewedComparison.stddevPercentDiffStats)
+    // Median Absolute Deviation #1 % Difference
+    writeStats('mad1-uniform-stats', uniformComparison.mad1PercentDiffStats)
+    writeStats('mad1-symmetric-stats', symmetricComparison.mad1PercentDiffStats)
+    writeStats('mad1-skewed-stats', skewedComparison.mad1PercentDiffStats)
+    // Median Absolute Deviation #2 % Difference
+    writeStats('mad2-uniform-stats', uniformComparison.mad2PercentDiffStats)
+    writeStats('mad2-symmetric-stats', symmetricComparison.mad2PercentDiffStats)
+    writeStats('mad2-skewed-stats', skewedComparison.mad2PercentDiffStats)
+    // Housekeeping
     showComparisonSections()
     enableStartButton(true)
   }, 33) // 33 is arbitrary
