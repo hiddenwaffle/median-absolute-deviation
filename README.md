@@ -11,7 +11,13 @@ It compares them by their average percentage difference between the samples and 
 
 ```bash
 # Deploy
+git status
+# <ensure that no outstanding work before proceeding>
+
 rm -rf docs
 npm run build
 mv dist docs
+git add -A
+git commit -m 'Deploy'
+git push
 ```
