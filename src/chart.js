@@ -20,7 +20,7 @@ export function drawChart(title, elementId, arr) {
   chart.draw(dataTable, options)
 }
 
-export function drawComparisonChart(title, elementId, uniformStats, symmetricStats, skewedStats) {
+export function drawComparisonChart(title, elementId, uniformStats, symmetricStats, skewedStats, min, max) {
   var data = google.visualization.arrayToDataTable([
     ['Distribution', 'Avg Mean Difference %', 'Avg Std Dev Difference %'],
     ['Uniform', uniformStats.mean * 100, uniformStats.stddev * 100],
@@ -34,7 +34,11 @@ export function drawComparisonChart(title, elementId, uniformStats, symmetricSta
     },
     bars: 'horizontal', // Required for Material Bar Charts.
     hAxis: {
-      format: 'decimal'
+      format: 'decimal',
+      viewWindow: {
+        min,
+        max
+      }
     },
     width: 1280,
     height: 400,

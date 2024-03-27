@@ -126,3 +126,26 @@ export function compareStats(populationStats, samplesStats) {
     mad2PercentDiffStats
   }
 }
+
+/**
+ * Hacky solution to having visually comparable sections
+ */
+export function findMinMaxTimes100(uniformStats, symmetricStats, skewedStats) {
+  let minFound = Number.MAX_SAFE_INTEGER
+  let maxFound = 0
+  for (let dist of [uniformStats, symmetricStats, skewedStats]) {
+    for (let name of ['stddevPercentDiffStats', 'mad1PercentDiffStats', 'mad2PercentDiffStats']) {
+      const stats = dist[name]
+      const min = Math.min(stats.mean, stats.stddev)
+      const max = Math.max(stats.mean, stats.stddev)
+      if (min < minFound) {
+        minFound = min
+      }
+      if (max > maxFound) {
+        maxFound = max
+      }
+    }
+  }
+  console.log('found:', minFound * 100, maxFound * 100)
+  return [minFound * 100, maxFound * 100]
+}

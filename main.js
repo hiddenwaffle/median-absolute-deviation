@@ -1,6 +1,6 @@
 import { drawChart, drawComparisonChart } from './src/chart'
 import { showPopulationChartSection, getParameter, resetPage, writeStats, enableStartButton, showComparisonSections } from './src/dom'
-import { calculateStats, compareStats, getSample, randLeftSkewArray as randLeftSkewedArray, randSymmetricArray, randUniformArray } from './src/math'
+import { calculateStats, compareStats, findMinMaxTimes100, getSample, randLeftSkewArray as randLeftSkewedArray, randSymmetricArray, randUniformArray } from './src/math'
 import './style.css'
 
 // Wait for Google Charts to load before allowing user to begin the simulation
@@ -68,27 +68,35 @@ function start() {
     const uniformComparison = compareStats(populationUniformStats, uniformSamplesStats)
     const symmetricComparison = compareStats(populationSymmetricStats, symmetricSamplesStats)
     const skewedComparison = compareStats(populationSkewedStats, skewedSamplesStats)
+    // Hacky way to get chart bounds
+    const [min, max] = findMinMaxTimes100(uniformComparison, symmetricComparison, skewedComparison)
     // Standard Deviation % Difference
     drawComparisonChart(
       'Standard Deviation Percent Difference',
       'stddev-comparison-chart',
       uniformComparison.stddevPercentDiffStats,
       symmetricComparison.stddevPercentDiffStats,
-      skewedComparison.stddevPercentDiffStats
+      skewedComparison.stddevPercentDiffStats,
+      min,
+      max
     )
     drawComparisonChart(
       'Median Absolute Deviation #1 Percent Difference',
       'mad1-comparison-chart',
       uniformComparison.mad1PercentDiffStats,
       symmetricComparison.mad1PercentDiffStats,
-      skewedComparison.mad1PercentDiffStats
+      skewedComparison.mad1PercentDiffStats,
+      min,
+      max
     )
     drawComparisonChart(
       'Median Absolute Deviation #2 Percent Difference',
       'mad2-comparison-chart',
       uniformComparison.mad2PercentDiffStats,
       symmetricComparison.mad2PercentDiffStats,
-      skewedComparison.mad2PercentDiffStats
+      skewedComparison.mad2PercentDiffStats,
+      min,
+      max
     )
     // Housekeeping
     showComparisonSections()
