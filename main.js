@@ -61,6 +61,8 @@ function startDataGeneration() {
       const skewedSampleStats = calculateStats(skewedSample)
       skewedSamplesStats.push(skewedSampleStats)
     }
+    // console.log('populationSkewedStats', populationSkewedStats)
+    // console.log('skewedSamplesStats', skewedSamplesStats)
     startComparisons(
       populationUniformStats,
       populationSymmetricStats,

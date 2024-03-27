@@ -21,6 +21,12 @@ export function drawChart(title, elementId, arr) {
 }
 
 export function drawComparisonChart(title, elementId, uniformStats, symmetricStats, skewedStats, min, max) {
+  // console.log('title', title)
+  // console.log('min', min)
+  // console.log('max', max)
+  // console.log('uniformStats', uniformStats)
+  // console.log('symmetricStats', symmetricStats)
+  // console.log('skewedStats', skewedStats)
   var data = google.visualization.arrayToDataTable([
     ['Distribution', 'Avg Mean Difference %', 'Avg Std Dev Difference %'],
     ['Uniform', uniformStats.mean * 100, uniformStats.stddev * 100],
