@@ -146,5 +146,5 @@ export function findMinMaxTimes100(uniformStats, symmetricStats, skewedStats) {
       }
     }
   }
-  return [minFound * 100, maxFound * 100]
+  return [Math.floor(minFound * 100), Math.ceil(maxFound * 100)]
 }

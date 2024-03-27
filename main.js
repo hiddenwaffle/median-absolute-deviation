@@ -18,13 +18,13 @@ document.getElementById('parameters-form').addEventListener('submit', (event) =>
   event.preventDefault()
   // Reset the page in case the user had already started a simulation
   resetPage()
-  setTimeout(() => start(), 33) // 33 is arbitrary
+  setTimeout(() => startDataGeneration(), 33) // 33 is arbitrary
 })
 
 /**
  * Main orchestration here
  */
-function start() {
+function startDataGeneration() {
   enableStartButton(false)
   // Get parameters
   const populationSize = getParameter('population-size')
@@ -47,9 +47,6 @@ function start() {
   writeStats('population-skewed-stats', populationSkewedStats)
   showPopulationChartSection()
   setTimeout(() => {
-    // TODO: Loop such that 10 times a second, drawChart a sample for each distribution.
-    // TODO: To do this, loop calculating samples until 100ms pass, then requestAnimationFrame.
-    // TODO: Do this until there are sampleSize samples.
     const uniformSamplesStats = []
     const symmetricSamplesStats = []
     const skewedSamplesStats = []
@@ -64,42 +61,59 @@ function start() {
       const skewedSampleStats = calculateStats(skewedSample)
       skewedSamplesStats.push(skewedSampleStats)
     }
-    // Compare the sample stats to the population stats
-    const uniformComparison = compareStats(populationUniformStats, uniformSamplesStats)
-    const symmetricComparison = compareStats(populationSymmetricStats, symmetricSamplesStats)
-    const skewedComparison = compareStats(populationSkewedStats, skewedSamplesStats)
-    // Hacky way to get chart bounds
-    const [min, max] = findMinMaxTimes100(uniformComparison, symmetricComparison, skewedComparison)
-    // Standard Deviation % Difference
-    drawComparisonChart(
-      'Standard Deviation Percent Difference',
-      'stddev-comparison-chart',
-      uniformComparison.stddevPercentDiffStats,
-      symmetricComparison.stddevPercentDiffStats,
-      skewedComparison.stddevPercentDiffStats,
-      min,
-      max
+    startComparisons(
+      populationUniformStats,
+      populationSymmetricStats,
+      populationSkewedStats,
+      uniformSamplesStats,
+      symmetricSamplesStats,
+      skewedSamplesStats
     )
-    drawComparisonChart(
-      'Median Absolute Deviation #1 Percent Difference',
-      'mad1-comparison-chart',
-      uniformComparison.mad1PercentDiffStats,
-      symmetricComparison.mad1PercentDiffStats,
-      skewedComparison.mad1PercentDiffStats,
-      min,
-      max
-    )
-    drawComparisonChart(
-      'Median Absolute Deviation #2 Percent Difference',
-      'mad2-comparison-chart',
-      uniformComparison.mad2PercentDiffStats,
-      symmetricComparison.mad2PercentDiffStats,
-      skewedComparison.mad2PercentDiffStats,
-      min,
-      max
-    )
-    // Housekeeping
-    showComparisonSections()
-    enableStartButton(true)
   }, 33) // 33 is arbitrary
+}
+
+function startComparisons(
+  populationUniformStats,
+  populationSymmetricStats,
+  populationSkewedStats,
+  uniformSamplesStats,
+  symmetricSamplesStats,
+  skewedSamplesStats) {
+  // Compare the sample stats to the population stats
+  const uniformComparison = compareStats(populationUniformStats, uniformSamplesStats)
+  const symmetricComparison = compareStats(populationSymmetricStats, symmetricSamplesStats)
+  const skewedComparison = compareStats(populationSkewedStats, skewedSamplesStats)
+  // Hacky way to get chart bounds
+  const [min, max] = findMinMaxTimes100(uniformComparison, symmetricComparison, skewedComparison)
+  // Standard Deviation % Difference
+  drawComparisonChart(
+    'Standard Deviation Percent Difference',
+    'stddev-comparison-chart',
+    uniformComparison.stddevPercentDiffStats,
+    symmetricComparison.stddevPercentDiffStats,
+    skewedComparison.stddevPercentDiffStats,
+    min,
+    max
+  )
+  drawComparisonChart(
+    'Median Absolute Deviation #1 Percent Difference',
+    'mad1-comparison-chart',
+    uniformComparison.mad1PercentDiffStats,
+    symmetricComparison.mad1PercentDiffStats,
+    skewedComparison.mad1PercentDiffStats,
+    min,
+    max
+  )
+  drawComparisonChart(
+    'Median Absolute Deviation #2 Percent Difference',
+    'mad2-comparison-chart',
+    uniformComparison.mad2PercentDiffStats,
+    symmetricComparison.mad2PercentDiffStats,
+    skewedComparison.mad2PercentDiffStats,
+    min,
+    max
+  )
+  // Housekeeping
+  showComparisonSections()
+  enableStartButton(true)
 }
