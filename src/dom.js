@@ -24,6 +24,7 @@ export function getParameter(elementId, nonZero = true) {
 export function resetPage() {
   // Show the start button
   el('start-button').style.display = 'block'
+  // TODO: Clear the textareas?
   // Hide all of the sections
   ;[
     // See showPopulationChartSection(), showComparisonSections(), etc

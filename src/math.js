@@ -107,8 +107,8 @@ export function getSample(arr, sampleSize) {
  * Calculate % difference between the sample values and the population values
  */
 function calculatePercentageDiff(sampleValues, populationValue) {
-  return sampleValues.map(x => Math.abs(x - populationValue)) // For debugging
-  // return sampleValues.map(x => Math.abs(x - populationValue) / populationValue)
+  // return sampleValues.map(x => Math.abs(x - populationValue)) // For debugging, see the actual diff
+  return sampleValues.map(x => Math.abs(x - populationValue) / populationValue)
 }
 
 export function compareStats(populationStats, samplesStats) {
@@ -116,10 +116,9 @@ export function compareStats(populationStats, samplesStats) {
   const samplesMad1Array = samplesStats.map(sampleStat => sampleStat.mad1)
   const samplesMad2Array = samplesStats.map(sampleStat => sampleStat.mad2)
   const stddevPercentDiffs = calculatePercentageDiff(samplesStddevArray, populationStats.stddev)
-  const mad1PercentDiffs = calculatePercentageDiff(samplesMad1Array, populationStats.stddev)
-  const mad2PercentDiffs = calculatePercentageDiff(samplesMad2Array, populationStats.stddev)
+  const mad1PercentDiffs = calculatePercentageDiff(samplesMad1Array, populationStats.mad1)
+  const mad2PercentDiffs = calculatePercentageDiff(samplesMad2Array, populationStats.mad2)
   const stddevPercentDiffStats = calculateStats(stddevPercentDiffs)
-  debugger
   const mad1PercentDiffStats = calculateStats(mad1PercentDiffs)
   const mad2PercentDiffStats = calculateStats(mad2PercentDiffs)
   return {
