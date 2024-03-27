@@ -38,6 +38,11 @@ export function showPopulationChartSection() {
   el('population-chart-section').style.display = 'flex'
 }
 
+export function updateProgressBar(current, total, complete=false) {
+  console.log('here:', current, '/', total)
+  if (complete) { console.log('complete') }
+}
+
 /**
  * Reset in resetPage()
  */

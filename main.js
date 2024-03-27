@@ -1,5 +1,5 @@
 import { drawChart, drawComparisonChart } from './src/chart'
-import { showPopulationChartSection, getParameter, resetPage, writeStats, enableStartButton, showComparisonSections } from './src/dom'
+import { showPopulationChartSection, getParameter, resetPage, writeStats, enableStartButton, showComparisonSections, updateProgressBar } from './src/dom'
 import { calculateStats, compareStats, findMinMaxTimes100, getSample, randLeftSkewArray as randLeftSkewedArray, randSymmetricArray, randUniformArray } from './src/math'
 import './style.css'
 
@@ -50,7 +50,7 @@ function startDataGeneration() {
     const uniformSamplesStats = []
     const symmetricSamplesStats = []
     const skewedSamplesStats = []
-    for (let i = 0; i < sampleCount; i++) {
+    function calculateOneSampleSet() {
       const uniformSample = getSample(uniformArray, sampleSize)
       const uniformSampleStats = calculateStats(uniformSample)
       uniformSamplesStats.push(uniformSampleStats)
@@ -61,16 +61,35 @@ function startDataGeneration() {
       const skewedSampleStats = calculateStats(skewedSample)
       skewedSamplesStats.push(skewedSampleStats)
     }
-    // console.log('populationSkewedStats', populationSkewedStats)
-    // console.log('skewedSamplesStats', skewedSamplesStats)
-    startComparisons(
-      populationUniformStats,
-      populationSymmetricStats,
-      populationSkewedStats,
-      uniformSamplesStats,
-      symmetricSamplesStats,
-      skewedSamplesStats
-    )
+    // This section creates samples and pauses every few times per
+    // second to update the progress bar
+    let count = 0
+    function calculateAllSampleSets() {
+      const startTime = Date.now()
+      while (count < sampleCount) {
+        count += 1
+        calculateOneSampleSet()
+        const currentTime = Date.now()
+        if (currentTime - startTime > 100) {
+          break
+        }
+      }
+      updateProgressBar(count, sampleCount)
+      if (count >= sampleCount) {
+        updateProgressBar(count, sampleCount, true)
+        startComparisons(
+          populationUniformStats,
+          populationSymmetricStats,
+          populationSkewedStats,
+          uniformSamplesStats,
+          symmetricSamplesStats,
+          skewedSamplesStats
+        )
+      } else {
+        setTimeout(calculateAllSampleSets, 1)
+      }
+    }
+    calculateAllSampleSets()
   }, 33) // 33 is arbitrary
 }
 
