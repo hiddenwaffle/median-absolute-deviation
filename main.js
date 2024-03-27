@@ -1,5 +1,5 @@
 import { drawChart, drawComparisonChart } from './src/chart'
-import { closeCSV, openCSV, writeArrayToCSV, writeStatsToCSV } from './src/csv-writer'
+import { closeCSV, openCSV, writeArrayToCSV, writeBlankLineToCSV, writeStatsToCSV } from './src/csv-writer'
 import { showPopulationChartSection, getParameter, resetPage, writeStats, resetUIElements, showComparisonSections, updateProgressBar, showSamplesProgressBarSection, isChecked } from './src/dom'
 import { calculateStats, compareStats, findMinMaxTimes100, getSample, randLeftSkewArray as randLeftSkewedArray, randSymmetricArray, randUniformArray } from './src/math'
 import './style.css'
@@ -65,10 +65,13 @@ function startDataGeneration() {
     openCSV()
     writeArrayToCSV('Uniform Population', uniformArray)
     writeStatsToCSV(populationUniformStats)
+    writeBlankLineToCSV()
     writeArrayToCSV('Symmetric Population', symmetricArray)
     writeStatsToCSV(populationSymmetricStats)
+    writeBlankLineToCSV()
     writeArrayToCSV('Skewed Population', skewedArray)
     writeStatsToCSV(populationSkewedStats)
+    writeBlankLineToCSV()
   }
   showPopulationChartSection()
   setTimeout(() => {
