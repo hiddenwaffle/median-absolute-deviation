@@ -129,7 +129,14 @@ button:disabled, button[disabled] {
   color: white;
 }
 
+#samples-progress-bar-text {
+  background-color: navy;
+  position: absolute;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
 #samples-progress-bar {
   background-color: blue;
-  padding-right: 16px;
+  padding-right: 8px;
 }

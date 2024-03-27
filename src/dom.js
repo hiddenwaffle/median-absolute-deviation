@@ -41,12 +41,12 @@ export function showPopulationChartSection() {
 }
 
 export function updateProgressBar(current, total, complete=false) {
-  // console.log('here:', current, '/', total)
-  // if (complete) { console.log('complete') }
   const pct = Math.floor((current / total) * 100)
   const progressBarElement = el('samples-progress-bar')
   progressBarElement.style.width = `${pct}%`
   progressBarElement.innerText = `${pct}%`
+  const progressBarTextElement = el('samples-progress-bar-text')
+  progressBarTextElement.innerText = 'Generating Samples...'
 }
 
 /**
