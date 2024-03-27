@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Median Absolute Deviation</title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="module" crossorigin src="/assets/index-Di9KC5My.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-TKqY2kMn.css">
+  </head>
+  <body>
+    <div id="app">
+      <h1>Median Absolute Deviation</h1>
+      <div class="section">
+        <form id="parameters-form">
+          <div class="subsection">
+            <label for="population-size">Population Size:</label>
+            <input id="population-size" name="population-size" type="number" value="10000" min="2" max="100000">
+            <label for="sample-size">Sample Size:</label>
+            <input id="sample-size" name="sample-size" type="number" value="100" min="2">
+          </div>
+          <div class="subsection">
+            <label for="sample-count">Sample Count:</label>
+            <input id="sample-count" name="sample-count" type="number" value="50">
+            <label for="outliers-count">Number of Outliers:</label>
+            <input id="outliers-count" name="outliers-count" type="number" value="1000">
+          </div>
+          <div class="subsection">
+            <button id="start-button" type="submit">Start</button>
+          </div>
+        </form>
+      </div>
+      <h2>Population</h2>
+      <div id="population-chart-section" class="section chart-section">
+        <div id="popchart-uniform-subsection" class="subsection">
+          <div id="popchart-uniform"></div>
+          <textarea id="population-uniform-stats" readonly class="textstats"></textarea>
+        </div>
+        <div id="popchart-symmetric-subsection" class="subsection">
+          <div id="popchart-symmetric"></div>
+          <textarea id="population-symmetric-stats" readonly class="textstats"></textarea>
+        </div>
+        <div id="popchart-skewed-subsection" class="subsection">
+          <div id="popchart-skewed"></div>
+          <textarea id="population-skewed-stats" readonly class="textstats"></textarea>
+        </div>
+      </div>
+      <!-- TODO: Sample progress bar goes here -->
+      <div id="comparison-section">
+        <h2>Samples vs Populations</h2>
+        <div id="stddev-section" class="section chart-section">
+          <div class="subsection">
+            <div id="stddev-comparison-chart"></div>
+          </div>
+        </div>
+        <div id="mad1-section" class="section chart-section">
+          <div class="subsection">
+            <div id="mad1-comparison-chart"></div>
+          </div>
+        </div>
+        <div id="mad2-section" class="section chart-section">
+          <div class="subsection">
+            <div id="mad2-comparison-chart"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+</html>
