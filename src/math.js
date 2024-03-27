@@ -1,5 +1,5 @@
 function generateOutlier(size) {
-  return Math.floor(size * 1.25 + (Math.random() * size / 3)) // arbitrary
+  return Math.floor(size * 2.25 + (Math.random() * size / 3)) // arbitrary
 }
 
 /**
