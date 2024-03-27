@@ -107,7 +107,6 @@ export function getSample(arr, sampleSize) {
  * Calculate % difference between the sample values and the population values
  */
 function calculatePercentageDiff(sampleValues, populationValue) {
-  // return sampleValues.map(x => Math.abs(x - populationValue)) // For debugging, see the actual diff
   return sampleValues.map(x => Math.abs(x - populationValue) / populationValue)
 }
 
