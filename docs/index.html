@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Median Absolute Deviation</title>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="module" crossorigin src="/median-absolute-deviation/assets/index-BVEf6iOx.js"></script>
-    <link rel="stylesheet" crossorigin href="/median-absolute-deviation/assets/index-aYGnLr6J.css">
+    <script type="module" crossorigin src="/median-absolute-deviation/assets/index-Dp7TQU5t.js"></script>
+    <link rel="stylesheet" crossorigin href="/median-absolute-deviation/assets/index-DnxTDaUP.css">
   </head>
   <body>
     <div id="app">
@@ -19,12 +19,20 @@
             <input id="population-size" name="population-size" type="number" value="10000" min="2" max="100000">
             <label for="sample-size">Sample Size:</label>
             <input id="sample-size" name="sample-size" type="number" value="100" min="2">
-          </div>
-          <div class="subsection">
             <label for="sample-count">Sample Count:</label>
             <input id="sample-count" name="sample-count" type="number" value="50">
+            <div id="save-checkbox-section">
+              <label for="save-checkbox">Save to CSV</label>
+              <input id="save-checkbox" name="save-checkbox" type="checkbox">
+            </div>
+          </div>
+          <div class="subsection">
             <label for="outliers-count">Number of Outliers:</label>
-            <input id="outliers-count" name="outliers-count" type="number" value="1000">
+            <input id="outliers-count" name="outliers-count" type="number" value="500">
+            <label for="outlier-distance">Outlier Distance:</label>
+            <input id="outlier-distance" name="outlier-distance" type="number" value="25000">
+            <label for="outlier-spread">Outlier Spread</label>
+            <input id="outlier-spread" name="outlier-spread" type="number" value="3000">
           </div>
           <div class="subsection">
             <button id="start-button" type="submit">Start</button>

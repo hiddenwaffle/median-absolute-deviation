@@ -42,10 +42,12 @@ function startDataGeneration() {
   const sampleSize = getParameter('sample-size')
   const sampleCount = getParameter('sample-count')
   const outliersCount = getParameter('outliers-count', false)
+  const outlierDistance = getParameter('outlier-distance')
+  const outlierSpread = getParameter('outlier-spread')
   // Generate populations
-  const uniformArray = randUniformArray(populationSize, outliersCount)
-  const symmetricArray = randSymmetricArray(populationSize, outliersCount)
-  const skewedArray = randLeftSkewedArray(populationSize, outliersCount)
+  const uniformArray = randUniformArray(populationSize, outliersCount, outlierDistance, outlierSpread)
+  const symmetricArray = randSymmetricArray(populationSize, outliersCount, outlierDistance, outlierSpread)
+  const skewedArray = randLeftSkewedArray(populationSize, outliersCount, outlierDistance, outlierSpread)
   // Draw population histograms
   drawChart('Uniform Population', 'popchart-uniform', uniformArray)
   drawChart('Symmetric Population', 'popchart-symmetric', symmetricArray)

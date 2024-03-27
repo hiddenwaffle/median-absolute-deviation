@@ -1,5 +1,5 @@
-function generateOutlier(size) {
-  return Math.floor(size * 2.25 + (Math.random() * size / 3)) // arbitrary
+function generateOutlier(distance, spread) {
+  return Math.floor(distance + (Math.random() * spread))
 }
 
 /**
@@ -7,36 +7,42 @@ function generateOutlier(size) {
  * Based on https://gist.github.com/greim/4589675 with
  * visualizations at https://old.reddit.com/r/javascript/comments/170hm0/fun_with_mathrandom_and_probability_distributions/
  */
-function randArray(size, rFunc, outliersCount) {
+function randArray(size, rFunc, outliersCount, outlierDistance, outlierSpread) {
   const arr = []
   for (let n = 0; n < size; n++) {
     arr.push(Math.floor(rFunc() * size))
   }
-  for (let n = 0; n < outliersCount; n++) { arr.push(generateOutlier(size)) }
+  for (let n = 0; n < outliersCount; n++) { arr.push(generateOutlier(outlierDistance, outlierSpread)) }
   return arr
 }
 
-export function randUniformArray(size, outliersCount) {
+export function randUniformArray(size, outliersCount, outlierDistance, outlierSpread) {
   return randArray(
     size,
     () => Math.random(),
-    outliersCount
+    outliersCount,
+    outlierDistance,
+    outlierSpread
   )
 }
 
-export function randSymmetricArray(size, outliersCount) {
+export function randSymmetricArray(size, outliersCount, outlierDistance, outlierSpread) {
   return randArray(
     size,
     () => (Math.random() + Math.random() + Math.random() + Math.random()) / 4,
-    outliersCount
+    outliersCount,
+    outlierDistance,
+    outlierSpread
   )
 }
 
-export function randLeftSkewArray(size, outliersCount) {
+export function randLeftSkewArray(size, outliersCount, outlierDistance, outlierSpread) {
   return randArray(
     size,
     () => Math.max(Math.random(), Math.random(), Math.random(), Math.random()),
-    outliersCount
+    outliersCount,
+    outlierDistance,
+    outlierSpread
   )
 }
 
