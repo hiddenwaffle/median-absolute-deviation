@@ -1,10 +1,10 @@
-import { drawChart } from './src/chart'
+import { drawChart, drawComparisonChart } from './src/chart'
 import { showPopulationChartSection, getParameter, resetPage, writeStats, enableStartButton, showComparisonSections } from './src/dom'
 import { calculateStats, compareStats, getSample, randLeftSkewArray as randLeftSkewedArray, randSymmetricArray, randUniformArray } from './src/math'
 import './style.css'
 
 // Wait for Google Charts to load before allowing user to begin the simulation
-google.charts.load('current', { packages: ['corechart'] })
+google.charts.load('current', { packages: ['corechart', 'bar'] })
 google.charts.setOnLoadCallback(() => {
   resetPage()
   // TODO: Remove this (autorunner with default values)
@@ -36,9 +36,9 @@ function start() {
   const symmetricArray = randSymmetricArray(populationSize, outliersCount)
   const skewedArray = randLeftSkewedArray(populationSize, outliersCount)
   // Draw population histograms
-  drawChart('Uniform population', 'popchart-uniform', uniformArray)
-  drawChart('Symmetric population', 'popchart-symmetric', symmetricArray)
-  drawChart('Skewed population', 'popchart-skewed', skewedArray)
+  drawChart('Uniform Population', 'popchart-uniform', uniformArray)
+  drawChart('Symmetric Population', 'popchart-symmetric', symmetricArray)
+  drawChart('Skewed Population', 'popchart-skewed', skewedArray)
   const populationUniformStats = calculateStats(uniformArray, true)
   const populationSymmetricStats = calculateStats(symmetricArray, true)
   const populationSkewedStats = calculateStats(skewedArray, true)
@@ -69,17 +69,27 @@ function start() {
     const symmetricComparison = compareStats(populationSymmetricStats, symmetricSamplesStats)
     const skewedComparison = compareStats(populationSkewedStats, skewedSamplesStats)
     // Standard Deviation % Difference
-    writeStats('stddev-uniform-stats', uniformComparison.stddevPercentDiffStats)
-    writeStats('stddev-symmetric-stats', symmetricComparison.stddevPercentDiffStats)
-    writeStats('stddev-skewed-stats', skewedComparison.stddevPercentDiffStats)
-    // Median Absolute Deviation #1 % Difference
-    writeStats('mad1-uniform-stats', uniformComparison.mad1PercentDiffStats)
-    writeStats('mad1-symmetric-stats', symmetricComparison.mad1PercentDiffStats)
-    writeStats('mad1-skewed-stats', skewedComparison.mad1PercentDiffStats)
-    // Median Absolute Deviation #2 % Difference
-    writeStats('mad2-uniform-stats', uniformComparison.mad2PercentDiffStats)
-    writeStats('mad2-symmetric-stats', symmetricComparison.mad2PercentDiffStats)
-    writeStats('mad2-skewed-stats', skewedComparison.mad2PercentDiffStats)
+    drawComparisonChart(
+      'Standard Deviation Percent Difference',
+      'stddev-comparison-chart',
+      uniformComparison.stddevPercentDiffStats,
+      symmetricComparison.stddevPercentDiffStats,
+      skewedComparison.stddevPercentDiffStats
+    )
+    drawComparisonChart(
+      'Median Absolute Deviation #1 Percent Difference',
+      'mad1-comparison-chart',
+      uniformComparison.mad1PercentDiffStats,
+      symmetricComparison.mad1PercentDiffStats,
+      skewedComparison.mad1PercentDiffStats
+    )
+    drawComparisonChart(
+      'Median Absolute Deviation #2 Percent Difference',
+      'mad2-comparison-chart',
+      uniformComparison.mad2PercentDiffStats,
+      symmetricComparison.mad2PercentDiffStats,
+      skewedComparison.mad2PercentDiffStats
+    )
     // Housekeeping
     showComparisonSections()
     enableStartButton(true)
