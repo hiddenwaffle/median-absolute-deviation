@@ -2,8 +2,10 @@
 
 ## Run in Browser: https://hiddenwaffle.github.io/median-absolute-deviation
 
-* TODO: Description
-* TODO: Progress bar and way to download to CSV
+## Description
+
+This application compares standard deviation to median absolute deviation.
+It compares them by their average percentage difference between the samples and the population.
 
 ## Deploy
 
