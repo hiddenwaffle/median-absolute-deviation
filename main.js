@@ -1,9 +1,11 @@
 import { drawChart, drawComparisonChart } from './src/chart'
+import { closeCSV, openCSV, writeArrayToCSV, writeStatsToCSV } from './src/csv-writer'
 import { showPopulationChartSection, getParameter, resetPage, writeStats, resetUIElements, showComparisonSections, updateProgressBar, showSamplesProgressBarSection, isChecked } from './src/dom'
 import { calculateStats, compareStats, findMinMaxTimes100, getSample, randLeftSkewArray as randLeftSkewedArray, randSymmetricArray, randUniformArray } from './src/math'
 import './style.css'
 
 window.onerror = (message, source, lineno, colno, error) => {
+  closeCSV()
   alert(
     `Program Error! Please report this error, and refresh this page to try again:\n`+
     `message: ${message}\n` +
@@ -60,7 +62,13 @@ function startDataGeneration() {
   writeStats('population-symmetric-stats', populationSymmetricStats)
   writeStats('population-skewed-stats', populationSkewedStats)
   if (csvRequested) {
-    // TODO: Write to the CSV
+    openCSV()
+    writeArrayToCSV('Uniform Population', uniformArray)
+    writeStatsToCSV(populationUniformStats)
+    writeArrayToCSV('Symmetric Population', symmetricArray)
+    writeStatsToCSV(populationSymmetricStats)
+    writeArrayToCSV('Skewed Population', skewedArray)
+    writeStatsToCSV(populationSkewedStats)
   }
   showPopulationChartSection()
   setTimeout(() => {
@@ -79,7 +87,7 @@ function startDataGeneration() {
       skewedSamplesStats.push(skewedSampleStats)
       if (csvRequested) {
         // TODO: Write to the CSV
-        // TODO: Close the file
+        closeCSV()
       }
     }
     // This section creates samples and pauses every few times per
