@@ -46,7 +46,11 @@ export function updateProgressBar(current, total, complete=false) {
   progressBarElement.style.width = `${pct}%`
   progressBarElement.innerText = `${pct}%`
   const progressBarTextElement = el('samples-progress-bar-text')
-  progressBarTextElement.innerText = 'Generating Samples...'
+  if (complete) {
+    progressBarTextElement.innerText = ''
+  } else {
+    progressBarTextElement.innerText = 'Generating Samples...'
+  }
 }
 
 /**

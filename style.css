@@ -122,7 +122,6 @@ button:disabled, button[disabled] {
 
 #samples-progress-bar-section {
   border: 1px dashed darkgrey;
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
   text-align: right;
@@ -134,9 +133,13 @@ button:disabled, button[disabled] {
   position: absolute;
   padding-left: 8px;
   padding-right: 8px;
+  z-index: 0;
+  opacity: 25%;
 }
 
 #samples-progress-bar {
+  box-sizing: border-box;
   background-color: blue;
   padding-right: 8px;
+  opacity: 25%;
 }
