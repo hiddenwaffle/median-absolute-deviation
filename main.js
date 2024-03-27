@@ -84,7 +84,7 @@ function startDataGeneration() {
       uniformSamplesStats.push(uniformSampleStats)
       if (csvRequested) {
         writeArrayToCSV('Uniform Sample', uniformSample)
-        writeStatsToCSV(uniformSamplesStats)
+        writeStatsToCSV(uniformSampleStats)
         writeBlankLineToCSV()
       }
       const symmetricSample = getSample(symmetricArray, sampleSize)
