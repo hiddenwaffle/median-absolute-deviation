@@ -1,5 +1,5 @@
 import { drawChart, drawComparisonChart } from './src/chart'
-import { showPopulationChartSection, getParameter, resetPage, writeStats, enableStartButton, showComparisonSections, updateProgressBar, showSamplesProgressBarSection } from './src/dom'
+import { showPopulationChartSection, getParameter, resetPage, writeStats, resetUIElements, showComparisonSections, updateProgressBar, showSamplesProgressBarSection, isChecked } from './src/dom'
 import { calculateStats, compareStats, findMinMaxTimes100, getSample, randLeftSkewArray as randLeftSkewedArray, randSymmetricArray, randUniformArray } from './src/math'
 import './style.css'
 
@@ -36,7 +36,8 @@ document.getElementById('parameters-form').addEventListener('submit', (event) =>
  * Main orchestration here
  */
 function startDataGeneration() {
-  enableStartButton(false)
+  const csvRequested = isChecked('save-checkbox') // Get this before the form is reset
+  resetUIElements(false)
   // Get parameters
   const populationSize = getParameter('population-size')
   const sampleSize = getParameter('sample-size')
@@ -58,6 +59,9 @@ function startDataGeneration() {
   writeStats('population-uniform-stats', populationUniformStats)
   writeStats('population-symmetric-stats', populationSymmetricStats)
   writeStats('population-skewed-stats', populationSkewedStats)
+  if (csvRequested) {
+    // TODO: Write to the CSV
+  }
   showPopulationChartSection()
   setTimeout(() => {
     const uniformSamplesStats = []
@@ -73,6 +77,10 @@ function startDataGeneration() {
       const skewedSample = getSample(skewedArray, sampleSize)
       const skewedSampleStats = calculateStats(skewedSample)
       skewedSamplesStats.push(skewedSampleStats)
+      if (csvRequested) {
+        // TODO: Write to the CSV
+        // TODO: Close the file
+      }
     }
     // This section creates samples and pauses every few times per
     // second to update the progress bar
@@ -150,5 +158,5 @@ function startComparisons(
   )
   // Housekeeping
   showComparisonSections()
-  enableStartButton(true)
+  resetUIElements(true)
 }

@@ -16,6 +16,11 @@ export function getParameter(elementId, nonZero = true) {
   return result
 }
 
+export function isChecked(elementId) {
+  const element = el(elementId)
+  return element.checked
+}
+
 export function resetPage() {
   // Show the start button
   el('start-button').style.display = 'inline-block'
@@ -67,12 +72,13 @@ export function showComparisonSections() {
   el('comparison-section').style.display = 'block'
 }
 
-export function enableStartButton(enabled) {
+export function resetUIElements(enabled) {
   if (enabled) {
     el('start-button').disabled = ''
   } else {
     el('start-button').disabled = 'disabled'
   }
+  el('save-checkbox').checked = false
 }
 
 export function writeStats(elementId, stats) {

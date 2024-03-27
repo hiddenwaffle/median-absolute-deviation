@@ -11,5 +11,8 @@
   "devDependencies": {
     "@vitejs/plugin-basic-ssl": "^1.1.0",
     "vite": "^5.2.0"
+  },
+  "dependencies": {
+    "streamsaver": "^2.0.6"
   }
 }
