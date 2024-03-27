@@ -1,5 +1,5 @@
 import { drawChart, drawComparisonChart } from './src/chart'
-import { showPopulationChartSection, getParameter, resetPage, writeStats, enableStartButton, showComparisonSections, updateProgressBar } from './src/dom'
+import { showPopulationChartSection, getParameter, resetPage, writeStats, enableStartButton, showComparisonSections, updateProgressBar, showSamplesProgressBarSection } from './src/dom'
 import { calculateStats, compareStats, findMinMaxTimes100, getSample, randLeftSkewArray as randLeftSkewedArray, randSymmetricArray, randUniformArray } from './src/math'
 import './style.css'
 
@@ -89,6 +89,7 @@ function startDataGeneration() {
         setTimeout(calculateAllSampleSets, 1)
       }
     }
+    showSamplesProgressBarSection()
     calculateAllSampleSets()
   }, 33) // 33 is arbitrary
 }

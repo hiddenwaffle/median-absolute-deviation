@@ -20,10 +20,12 @@ export function resetPage() {
   // Show the start button
   el('start-button').style.display = 'block'
   // TODO: Clear the textareas?
+  // TODO: Reset the progress bar?
   // Hide all of the sections
   ;[
     // See showPopulationChartSection(), showComparisonSections(), etc
     'population-chart-section',
+    'samples-progress-bar-section',
     'comparison-section'
   ].forEach((elementId) => {
     el(elementId).style.display = 'none'
@@ -39,8 +41,19 @@ export function showPopulationChartSection() {
 }
 
 export function updateProgressBar(current, total, complete=false) {
-  console.log('here:', current, '/', total)
-  if (complete) { console.log('complete') }
+  // console.log('here:', current, '/', total)
+  // if (complete) { console.log('complete') }
+  const pct = Math.floor((current / total) * 100)
+  const progressBarElement = el('samples-progress-bar')
+  progressBarElement.style.width = `${pct}%`
+  progressBarElement.innerText = `${pct}%`
+}
+
+/**
+ * Reset in resetPage()
+ */
+export function showSamplesProgressBarSection() {
+  el('samples-progress-bar-section').style.display = 'block'
 }
 
 /**

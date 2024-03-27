@@ -108,8 +108,9 @@ button:disabled, button[disabled] {
 
 /* These are invisible by default (see resetPage() in dom.js) */
 #population-chart-section,
+#samples-progress-bar-section,
 #comparison-section {
-  display: none; /* -> flex */
+  display: none; /* -> flex or block, see functions for which one */
 }
 
 .textstats {
@@ -117,4 +118,18 @@ button:disabled, button[disabled] {
   resize: none;
   width: 192px;
   min-height: 7lh;
+}
+
+#samples-progress-bar-section {
+  border: 1px dashed darkgrey;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-align: right;
+  color: white;
+}
+
+#samples-progress-bar {
+  background-color: blue;
+  padding-right: 16px;
 }
