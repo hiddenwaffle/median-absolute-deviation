@@ -31,6 +31,21 @@ export function writeArrayToCSV(name, arr) {
 }
 
 export function writeStatsToCSV(stats) {
+  write('Mean')
+  write(stats.mean)
+  newline()
+  write('SD')
+  write(stats.stddev)
+  newline()
+  write('Median')
+  write(stats.median)
+  newline()
+  write('MAD1')
+  write(stats.mad1)
+  newline()
+  write('MAD2')
+  write(stats.mad2)
+  newline()
 }
 
 export function writeBlankLineToCSV() {

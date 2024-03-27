@@ -82,15 +82,26 @@ function startDataGeneration() {
       const uniformSample = getSample(uniformArray, sampleSize)
       const uniformSampleStats = calculateStats(uniformSample)
       uniformSamplesStats.push(uniformSampleStats)
+      if (csvRequested) {
+        writeArrayToCSV('Uniform Sample', uniformSample)
+        writeStatsToCSV(uniformSamplesStats)
+        writeBlankLineToCSV()
+      }
       const symmetricSample = getSample(symmetricArray, sampleSize)
       const symmetricSampleStats = calculateStats(symmetricSample)
       symmetricSamplesStats.push(symmetricSampleStats)
+      if (csvRequested) {
+        writeArrayToCSV('Symmetric Sample', symmetricSample)
+        writeStatsToCSV(symmetricSampleStats)
+        writeBlankLineToCSV()
+      }
       const skewedSample = getSample(skewedArray, sampleSize)
       const skewedSampleStats = calculateStats(skewedSample)
       skewedSamplesStats.push(skewedSampleStats)
       if (csvRequested) {
-        // TODO: Write to the CSV
-        closeCSV()
+        writeArrayToCSV('Skewed Sample', skewedSample)
+        writeStatsToCSV(skewedSampleStats)
+        writeBlankLineToCSV()
       }
     }
     // This section creates samples and pauses every few times per
@@ -109,6 +120,7 @@ function startDataGeneration() {
       updateProgressBar(count, sampleCount)
       if (count >= sampleCount) {
         updateProgressBar(count, sampleCount, true)
+        closeCSV() // No more data to write to the CSV at this point, so close it
         startComparisons(
           populationUniformStats,
           populationSymmetricStats,
