@@ -54,11 +54,14 @@ function start() {
     const symmetricSamplesStats = []
     const skewedSamplesStats = []
     for (let i = 0; i < sampleCount; i++) {
-      const uniformSampleStats = calculateStats(getSample(uniformArray, sampleSize))
+      const uniformSample = getSample(uniformArray, sampleSize)
+      const uniformSampleStats = calculateStats(uniformSample)
       uniformSamplesStats.push(uniformSampleStats)
-      const symmetricSampleStats = calculateStats(getSample(symmetricArray, sampleSize))
+      const symmetricSample = getSample(symmetricArray, sampleSize)
+      const symmetricSampleStats = calculateStats(symmetricSample)
       symmetricSamplesStats.push(symmetricSampleStats)
-      const skewedSampleStats = calculateStats(getSample(skewedArray, sampleSize))
+      const skewedSample = getSample(skewedArray, sampleSize)
+      const skewedSampleStats = calculateStats(skewedSample)
       skewedSamplesStats.push(skewedSampleStats)
     }
     // Compare the sample stats to the population stats
