@@ -3,6 +3,17 @@ import { showPopulationChartSection, getParameter, resetPage, writeStats, enable
 import { calculateStats, compareStats, findMinMaxTimes100, getSample, randLeftSkewArray as randLeftSkewedArray, randSymmetricArray, randUniformArray } from './src/math'
 import './style.css'
 
+window.onerror = (message, source, lineno, colno, error) => {
+  alert(
+    `Program Error! Please report this error, and refresh this page to try again:\n`+
+    `message: ${message}\n` +
+    `source:  ${source}\n` +
+    `lineno:  ${lineno}\n` +
+    `error:   ${error}\n`
+  )
+  console.error(message, source, lineno, colno, error)
+}
+
 // Wait for Google Charts to load before allowing user to begin the simulation
 google.charts.load('current', { packages: ['corechart', 'bar'] })
 google.charts.setOnLoadCallback(() => {
