@@ -74,6 +74,7 @@ function startDataGeneration() {
     writeBlankLineToCSV()
   }
   showPopulationChartSection()
+  showSamplesProgressBarSection()
   setTimeout(() => {
     const uniformSamplesStats = []
     const symmetricSamplesStats = []
@@ -133,7 +134,6 @@ function startDataGeneration() {
         setTimeout(calculateAllSampleSets, 1)
       }
     }
-    showSamplesProgressBarSection()
     calculateAllSampleSets()
   }, 33) // 33 is arbitrary
 }

@@ -63,6 +63,7 @@ export function updateProgressBar(current, total, complete=false) {
  */
 export function showSamplesProgressBarSection() {
   el('samples-progress-bar-section').style.display = 'block'
+  updateProgressBar(0, 1)
 }
 
 /**
