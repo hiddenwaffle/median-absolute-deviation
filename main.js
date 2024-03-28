@@ -7,7 +7,7 @@ import './style.css'
 window.onerror = (message, source, lineno, colno, error) => {
   closeCSV()
   alert(
-    `Program Error! Please report this error, and refresh this page to try again:\n`+
+    `Program Error! Please report the following information, and refresh this page to try again:\n`+
     `message: ${message}\n` +
     `source:  ${source}\n` +
     `lineno:  ${lineno}\n` +
